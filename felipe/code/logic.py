@@ -1,5 +1,35 @@
 import random
 
+color = {
+    # Regular colors
+    'black': '\33[30m',
+    'red': '\33[31m',
+    'green': '\33[32m',
+    'yellow': '\33[33m',
+    'blue': '\33[34m',
+    'magenta': '\33[35m',
+    'cyan': '\33[36m',
+    'white': '\33[37m',
+
+    # Background colors
+    'black_bg': '\33[40m',
+    'red_bg': '\33[41m',
+    'green_bg': '\33[42m',
+    'yellow_bg': '\33[43m',
+    'blue_bg': '\33[44m',
+    'magenta_bg': '\33[45m',
+    'cyan_bg': '\33[46m',
+    'white_bg': '\33[47m',
+
+    # Modifiers
+    'bold': '\33[1m',
+    'underline': '\33[4m',
+    'invert': '\33[7m',
+
+    # Reset
+    'r': '\33[m'
+}
+
 
 def get_word(words):
     return random.choice(words)
@@ -16,17 +46,15 @@ def check_letter(letter, word, hidden_word):
 
 
 def get_level():
-    print("Choose a difficulty level:\n1 - Nutella\n2 - Café com leite\n3 - Raiz")
-    while True:
-        choice = input("Enter the number of the difficulty level you want to play: ")
-        if choice == "1":
-            return "nutella"
-        elif choice == "2":
-            return "cafe_com_leite"
-        elif choice == "3":
-            return "raiz"
-        else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+    import inquirer
+    questions = [
+        inquirer.List('modes',
+                      message="Choose the difficulty level",
+                      choices=['Nutella', 'Café com leite', 'Raiz'],
+                      ),
+    ]
+    answers = inquirer.prompt(questions)
+    return answers['modes']
 
 
 def display_game(hidden_word, guessed_letters, remaining_lives):
