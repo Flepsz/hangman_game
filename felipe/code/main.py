@@ -3,14 +3,14 @@ from gamemodes import *
 
 
 def main():
-    print("Welcome to Hangman!")
+    print("Welcome to Hangman Game!")
     while True:
         level = get_level()
-        if level == "nutella":
+        if level == "Nutella":
             play_nutella()
-        elif level == "cafe_com_leite":
+        elif level == "Café com leite":
             play_cafe_com_leite()
-        elif level == "raiz":
+        elif level == "Raiz":
             play_raiz()
         play_again = input("Do you want to play again? (y/n) ").lower()
         if play_again != "y":
